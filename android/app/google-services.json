@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "7403237764",
+    "project_id": "hydrohealth-project-9cf6c",
+    "storage_bucket": "hydrohealth-project-9cf6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7403237764:android:c0755aef38e41af7586dd1",
+        "android_client_info": {
+          "package_name": "com.example.hydrohealth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTBEadLhkoOItGZyGXSG3Qe-0AHd0WUss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
