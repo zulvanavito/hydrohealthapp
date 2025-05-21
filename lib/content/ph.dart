@@ -95,6 +95,7 @@ class _PhLogState extends State<PhLog> {
     if (await Permission.storage.request().isGranted) {
       _exportLogsToExcel();
     } else {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text('Storage permission is required to save logs.')),
@@ -105,10 +106,8 @@ class _PhLogState extends State<PhLog> {
   Future<void> _exportLogsToExcel() async {
     var excel = Excel.createExcel();
     Sheet sheetObject = excel['LogHistory'];
-    sheetObject.appendRow([
-      const TextCellValue('Timestamp'),
-      TextCellValue('pH Value')
-    ]); // Header
+    sheetObject.appendRow(
+        [TextCellValue('Timestamp'), TextCellValue('pH Value')]); // Header
 
     for (var log in _logs) {
       final timestamp = (log['timestamp'] as Timestamp).toDate();
@@ -127,11 +126,14 @@ class _PhLogState extends State<PhLog> {
           ..createSync(recursive: true)
           ..writeAsBytesSync(fileBytes);
 
+        if (!mounted) return;
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Logs exported to $path')));
 
         await OpenFile.open(path);
+        print("Selected file path: ${file.path}");
       } catch (e) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Error writing file: $e')));
       }
@@ -162,7 +164,7 @@ class _PhLogState extends State<PhLog> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),
@@ -283,7 +285,7 @@ class _PhLogState extends State<PhLog> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),

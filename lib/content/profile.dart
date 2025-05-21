@@ -230,7 +230,7 @@ class _ProfileState extends State<Profile> {
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, 5),
-            color: const Color.fromARGB(255, 44, 95, 0).withOpacity(.2),
+            color: const Color.fromARGB(255, 44, 95, 0).withValues(alpha: 0.2),
             spreadRadius: 2,
             blurRadius: 10,
           ),
@@ -257,7 +257,7 @@ class _ProfileState extends State<Profile> {
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, 5),
-            color: const Color.fromARGB(255, 44, 95, 0).withOpacity(.2),
+            color: const Color.fromARGB(255, 44, 95, 0).withValues(alpha: 0.2),
             spreadRadius: 2,
             blurRadius: 10,
           ),

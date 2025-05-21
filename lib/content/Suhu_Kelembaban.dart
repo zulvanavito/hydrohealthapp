@@ -97,6 +97,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
     if (await Permission.storage.request().isGranted) {
       _exportLogsToExcel();
     } else {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text('Storage permission is required to save logs.')),
@@ -108,9 +109,9 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
     var excel = Excel.createExcel();
     Sheet sheetObject = excel['LogHistory'];
     sheetObject.appendRow([
-      const TextCellValue('Timestamp'),
-      const TextCellValue('Suhu (°C)'),
-      const TextCellValue('Kelembaban (%)')
+      TextCellValue('Timestamp'),
+      TextCellValue('Suhu (°C)'),
+      TextCellValue('Kelembaban (%)')
     ]); // Header
 
     for (var log in _logs) {
@@ -128,6 +129,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
     if (fileBytes != null) {
       try {
         final directory = await getExternalStorageDirectory();
+        if (!mounted) return;
         final path = await _showSaveFileDialog(context, directory!.path);
         if (path != null) {
           // ignore: unused_local_variable
@@ -135,6 +137,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
             ..createSync(recursive: true)
             ..writeAsBytesSync(fileBytes);
 
+          if (!mounted) return;
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text('Logs exported to $path')));
 
@@ -142,6 +145,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
           await OpenFile.open(path);
         }
       } catch (e) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Error writing file: $e')));
       }
@@ -235,7 +239,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3), // changes position of shadow
@@ -271,7 +275,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
                                   color: Colors.red, size: 30),
                               const SizedBox(width: 10),
                               Text(
-                                'Suhu: ${suhu}°C',
+                                'Suhu: $suhu°C',
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 20),
                               ),
@@ -283,7 +287,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
                                   color: Colors.blue, size: 30),
                               const SizedBox(width: 10),
                               Text(
-                                'Kelembaban: ${kelembaban}%',
+                                'Kelembaban: $kelembaban%',
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 20),
                               ),
@@ -363,8 +367,8 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
                               show: true,
                               gradient: LinearGradient(
                                 colors: [
-                                  Colors.red.withOpacity(0.3),
-                                  Colors.red.withOpacity(0.0),
+                                  Colors.red.withValues(alpha: 0.3),
+                                  Colors.red.withValues(alpha: 0.0),
                                 ],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -438,8 +442,8 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
                               show: true,
                               gradient: LinearGradient(
                                 colors: [
-                                  Colors.blue.withOpacity(0.3),
-                                  Colors.blue.withOpacity(0.0),
+                                  Colors.blue.withValues(alpha: 0.3),
+                                  Colors.blue.withValues(alpha: 0.0),
                                 ],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -463,7 +467,7 @@ class _SuhuKelembabanState extends State<SuhuKelembaban> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),

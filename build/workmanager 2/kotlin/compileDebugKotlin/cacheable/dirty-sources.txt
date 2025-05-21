@@ -1,0 +1,6 @@
+/Users/zulvanavito/.pub-cache/hosted/pub.dev/workmanager-0.5.2/android/src/main/kotlin/dev/fluttercommunity/workmanager/WorkmanagerCallHandler.kt
+/Users/zulvanavito/.pub-cache/hosted/pub.dev/workmanager-0.5.2/android/src/main/kotlin/dev/fluttercommunity/workmanager/WorkmanagerPlugin.kt
+/Users/zulvanavito/.pub-cache/hosted/pub.dev/workmanager-0.5.2/android/src/main/kotlin/dev/fluttercommunity/workmanager/BackgroundWorker.kt
+/Users/zulvanavito/.pub-cache/hosted/pub.dev/workmanager-0.5.2/android/src/main/kotlin/dev/fluttercommunity/workmanager/DebugHelper.kt
+/Users/zulvanavito/.pub-cache/hosted/pub.dev/workmanager-0.5.2/android/src/main/kotlin/dev/fluttercommunity/workmanager/SharedPreferenceHelper.kt
+/Users/zulvanavito/.pub-cache/hosted/pub.dev/workmanager-0.5.2/android/src/main/kotlin/dev/fluttercommunity/workmanager/Extractor.kt

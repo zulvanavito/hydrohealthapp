@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">7403237764</string>
+    <string name="google_api_key" translatable="false">AIzaSyBTBEadLhkoOItGZyGXSG3Qe-0AHd0WUss</string>
+    <string name="google_app_id" translatable="false">1:7403237764:android:c0755aef38e41af7586dd1</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBTBEadLhkoOItGZyGXSG3Qe-0AHd0WUss</string>
+    <string name="google_storage_bucket" translatable="false">hydrohealth-project-9cf6c.appspot.com</string>
+    <string name="project_id" translatable="false">hydrohealth-project-9cf6c</string>
+</resources>

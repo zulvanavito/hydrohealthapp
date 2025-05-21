@@ -101,6 +101,7 @@ class _NutrisiLogState extends State<NutrisiLog> {
     if (await Permission.storage.request().isGranted) {
       _exportLogsToExcel();
     } else {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text('Storage permission is required to save logs.')),
@@ -111,10 +112,8 @@ class _NutrisiLogState extends State<NutrisiLog> {
   Future<void> _exportLogsToExcel() async {
     var excel = Excel.createExcel();
     Sheet sheetObject = excel['LogHistory'];
-    sheetObject.appendRow([
-      const TextCellValue('Timestamp'),
-      const TextCellValue('Nutrisi Value')
-    ]); // Header
+    sheetObject.appendRow(
+        [TextCellValue('Timestamp'), TextCellValue('Nutrisi Value')]); // Header
 
     for (var log in _logs) {
       final timestamp = (log['timestamp'] as Timestamp).toDate();
@@ -135,11 +134,14 @@ class _NutrisiLogState extends State<NutrisiLog> {
           ..createSync(recursive: true)
           ..writeAsBytesSync(fileBytes);
 
+        if (!mounted) return;
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Logs exported to $path')));
 
         await OpenFile.open(path);
+        print("Selected file path: ${file.path}");
       } catch (e) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Error writing file: $e')));
       }
@@ -165,7 +167,7 @@ class _NutrisiLogState extends State<NutrisiLog> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),
@@ -263,7 +265,7 @@ class _NutrisiLogState extends State<NutrisiLog> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withValues(alpha: 0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),

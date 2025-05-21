@@ -1,9 +1,9 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\tools\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\arisf\Documents\PROJEK\MBKM_FIX_FINAL\HYDROHEALTH_FIX"
+export "FLUTTER_ROOT=/Users/zulvanavito/Development/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/zulvanavito/Documents/Pemrograman/Mobile/Tim 2/hydrohealth_app"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=lib\main.dart"
+export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"

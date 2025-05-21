@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
           image: const AssetImage("assets/images/login.jpg"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-            myColor.withOpacity(0.6),
+            myColor.withValues(alpha: 0.6),
             BlendMode.dstATop,
           ),
         ),

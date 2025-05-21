@@ -152,9 +152,9 @@ class _ChatState extends State<Chat> {
       )
           .listen((event) {
         ChatMessage? lastMessage = messages.firstOrNull;
-        String response = event.content?.parts?.fold(
-                "", (previous, current) => "$previous ${current.text}") ??
-            "";
+
+        // PERBAIKAN: Cara yang benar untuk extract text dari response
+        String response = _extractTextFromResponse(event);
 
         // Strip out Markdown formatting
         response = response.replaceAll("**", "");
@@ -179,6 +179,30 @@ class _ChatState extends State<Chat> {
     } catch (e) {
       // ignore: avoid_print
       print(e);
+    }
+  }
+
+  // PERBAIKAN: Helper method untuk extract text dari response
+  String _extractTextFromResponse(dynamic event) {
+    try {
+      // Cek apakah event memiliki content dan parts
+      if (event.content?.parts != null && event.content!.parts!.isNotEmpty) {
+        // Extract text dari semua parts
+        String combinedText = "";
+        for (var part in event.content!.parts!) {
+          // Cara yang benar untuk mengakses text dari Part
+          if (part.text != null) {
+            combinedText += part.text!;
+          }
+        }
+        return combinedText;
+      }
+
+      // Kalau nggak ada content, return empty string
+      return "";
+    } catch (e) {
+      print("Error extracting text: $e");
+      return "";
     }
   }
 

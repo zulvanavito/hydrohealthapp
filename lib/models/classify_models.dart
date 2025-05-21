@@ -15,11 +15,11 @@ class ClassifyModels {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['predicted_class'] = this.predictedClass;
-    data['probability'] = this.probability;
-    data['image_path'] = this.imagePath;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['predicted_class'] = predictedClass;
+    data['probability'] = probability;
+    data['image_path'] = imagePath;
     return data;
   }
 }

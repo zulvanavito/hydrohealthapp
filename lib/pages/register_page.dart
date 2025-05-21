@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
           image: const AssetImage("assets/images/login.jpg"),
           fit: BoxFit.cover,
           colorFilter:
-              ColorFilter.mode(myColor.withOpacity(0.6), BlendMode.dstATop),
+              ColorFilter.mode(myColor.withValues(alpha: 0.6), BlendMode.dstATop),
         ),
       ),
       child: Scaffold(
